@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Aplikasi Cerita</string>
+    <string name="signup">Daftar</string>
+    <string name="login">Log Masuk</string>
+    <string name="email">Emel</string>
+    <string name="password">Kata Laluan</string>
+    <string name="name">Nama</string>
+    <string name="name_blank">Nama tidak boleh kosong</string>
+    <string name="email_blank">Emel tidak boleh kosong</string>
+    <string name="password_blank">Kata laluan tidak boleh kosong</string>
+    <string name="password_error_length">Kata laluan mesti sekurang-kurangnya 8 aksara</string>
+    <string name="email_valid">Emel mesti dalam format @gmail.com</string>
+    <string name="check_input_again">Sila semak semula data yang anda masukkan.</string>
+    <string name="image_story">Gambar Cerita</string>
+    <string name="name_story">Nama Cerita</string>
+
+    <!-- LoginActivity -->
+    <string name="login_success_message">Anda berjaya log masuk sebagai %1$s!</string>
+    <string name="error_wrong_credentials">Emel atau kata laluan salah. Sila cuba lagi.</string>
+    <string name="login_failed">Ralat berlaku. Sila semak sambungan internet anda.</string>
+    <string name="imageLogin">Imej Animasi Log Masuk</string>
+    <string name="havent_account">Belum ada akaun?</string>
+    <string name="message_login_page">Masukkan maklumat anda terlebih dahulu</string>
+    <string name="title_login_page">Sudah bersedia untuk berkongsi cerita?</string>
+
+    <!-- RegisterActivity -->
+    <string name="success_title">Yeah!</string>
+    <string name="register_success_message">Akaun %1$s telah berjaya didaftarkan. Jom log masuk dan mula bercerita!</string>
+    <string name="already_taken">Emel ini telah digunakan!</string>
+    <string name="next">Seterusnya</string>
+    <string name="title_register_page">Sila lengkapkan maklumat anda di bawah</string>
+    <string name="imageRegister">Imej Animasi Pendaftaran</string>
+    <string name="have_account">Sudah ada akaun?</string>
+
+    <!-- StoryActivity -->
+    <string name="title_home">Senarai Cerita</string>
+
+    <!-- DetailActivity -->
+    <string name="invalid_id">ID cerita tidak sah</string>
+    <string name="title_detail">Butiran Cerita</string>
+    <string name="description_story">Deskripsi Cerita</string>
+
+    <!-- AddStoryActivity -->
+    <string name="empty_image_warning">Sila muat naik fail gambar terlebih dahulu.</string>
+    <string name="no_media">Tiada media dipilih</string>
+    <string name="hint">Tulis cerita anda di sini..</string>
+    <string name="camera">Kamera</string>
+    <string name="gallery">Galeri</string>
+    <string name="upload">Muat Naik</string>
+    <string name="title_add_story">Cipta Cerita</string>
+    <string name="title_permission_camera">Kebenaran Kamera Diperlukan</string>
+    <string name="message_permission_camera">Aplikasi ini memerlukan akses kamera untuk mengambil gambar.</string>
+    <string name="message_permission_camera_settings">Sila aktifkan kebenaran kamera secara manual di tetapan aplikasi.</string>
+    <string name="open_settings">Buka Tetapan</string>
+    <string name="allow">Benarkan</string>
+    <string name="cancel">Batal</string>
+    <string name="success_add_story">Berjaya mencipta cerita baharu!</string>
+
+    <!-- SettingsActivity -->
+    <string name="dark_mode">Mod Gelap</string>
+    <string name="logout">Log Keluar</string>
+    <string name="account">Akaun</string>
+    <string name="view">Paparan</string>
+    <string name="change_language">Tukar Bahasa</string>
+    <string name="current_language">%1$s</string>
+    <string name="image_change_language">Imej tukar bahasa</string>
+    <string name="title_settings">Tetapan</string>
+    <string name="choose_language">Pilih Bahasa</string>
+</resources>

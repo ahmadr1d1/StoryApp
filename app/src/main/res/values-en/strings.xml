@@ -1,0 +1,69 @@
+<resources>
+    <string name="app_name">Story App</string>
+    <string name="signup">Sign Up</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="name">Name</string>
+    <string name="name_blank">Name cannot be empty</string>
+    <string name="email_blank">Email cannot be empty</string>
+    <string name="password_blank">Password cannot be empty</string>
+    <string name="password_error_length">Password must be at least 8 characters</string>
+    <string name="email_valid">Email must be in @gmail.com format</string>
+    <string name="check_input_again">Please check the data you entered.</string>
+    <string name="image_story">Story Image</string>
+    <string name="name_story">Story Name</string>
+
+    <!-- LoginActivity -->
+    <string name="login_success_message">You have successfully logged in as %1$s!</string>
+    <string name="error_wrong_credentials">Incorrect email or password. Please try again.</string>
+    <string name="login_failed">An error occurred. Check your internet connection.</string>
+    <string name="imageLogin">Login Animation Image</string>
+    <string name="havent_account">Don\'t have an account?</string>
+    <string name="message_login_page">Please enter your data first</string>
+    <string name="title_login_page">Ready to share your story?</string>
+
+    <!-- RegisterActivity -->
+    <string name="success_title">Yeah!</string>
+    <string name="register_success_message">Your account %1$s has been created. Let’s log in and start your story!</string>
+    <string name="already_taken">Email is already in use!</string>
+    <string name="next">Next</string>
+    <string name="title_register_page">Fill in your details below</string>
+    <string name="imageRegister">Register Animation Image</string>
+    <string name="have_account">Already have an account?</string>
+
+    <!-- StoryActivity -->
+    <string name="title_home">Story List</string>
+
+    <!-- DetailActivity -->
+    <string name="invalid_id">Invalid story ID</string>
+    <string name="title_detail">Story Details</string>
+    <string name="description_story">Story Description</string>
+
+    <!-- AddStoryActivity -->
+    <string name="empty_image_warning">Please upload an image file first.</string>
+    <string name="no_media">No media selected</string>
+    <string name="hint">Write your story here..</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="upload">Upload</string>
+    <string name="title_add_story">Create Story</string>
+    <string name="title_permission_camera">Camera Permission Required</string>
+    <string name="message_permission_camera">This app needs camera access to take photos.</string>
+    <string name="message_permission_camera_settings">Please enable camera permission manually in the app settings.</string>
+    <string name="open_settings">Open Settings</string>
+    <string name="allow">Allow</string>
+    <string name="cancel">Cancel</string>
+    <string name="success_add_story">Successfully created a new story!</string>
+
+    <!-- SettingsActivity -->
+    <string name="dark_mode">Dark Mode</string>
+    <string name="logout">Logout</string>
+    <string name="account">Account</string>
+    <string name="view">Display</string>
+    <string name="change_language">Change Language</string>
+    <string name="current_language">%1$s</string>
+    <string name="image_change_language">Change Language Image</string>
+    <string name="title_settings">Settings</string>
+    <string name="choose_language">Choose Language</string>
+</resources>

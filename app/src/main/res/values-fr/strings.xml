@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Application Histoire</string>
+    <string name="signup">S\'inscrire</string>
+    <string name="login">Connexion</string>
+    <string name="email">E-mail</string>
+    <string name="password">Mot de passe</string>
+    <string name="name">Nom</string>
+    <string name="name_blank">Le nom ne peut pas être vide</string>
+    <string name="email_blank">L\'e-mail ne peut pas être vide</string>
+    <string name="password_blank">Le mot de passe ne peut pas être vide</string>
+    <string name="password_error_length">Le mot de passe doit contenir au moins 8 caractères</string>
+    <string name="email_valid">L\'e-mail doit avoir le format @gmail.com</string>
+    <string name="check_input_again">Veuillez vérifier les données saisies.</string>
+    <string name="image_story">Image de l\'histoire</string>
+    <string name="name_story">Nom de l\'histoire</string>
+
+    <!-- LoginActivity -->
+    <string name="login_success_message">Vous êtes connecté en tant que %1$s !</string>
+    <string name="error_wrong_credentials">E-mail ou mot de passe incorrect. Veuillez réessayer.</string>
+    <string name="login_failed">Une erreur s\'est produite. Vérifiez votre connexion Internet.</string>
+    <string name="imageLogin">Image animée de connexion</string>
+    <string name="havent_account">Vous n\'avez pas de compte ?</string>
+    <string name="message_login_page">Veuillez entrer vos données</string>
+    <string name="title_login_page">Prêt à partager votre histoire ?</string>
+
+    <!-- RegisterActivity -->
+    <string name="success_title">Yeah !</string>
+    <string name="register_success_message">Le compte %1$s a été créé. Connectez-vous et commencez votre histoire !</string>
+    <string name="already_taken">Cet e-mail est déjà utilisé !</string>
+    <string name="next">Suivant</string>
+    <string name="title_register_page">Complétez vos informations ci-dessous</string>
+    <string name="imageRegister">Image animée d\'inscription</string>
+    <string name="have_account">Vous avez déjà un compte ?</string>
+
+    <!-- StoryActivity -->
+    <string name="title_home">Liste des Histoires</string>
+
+    <!-- DetailActivity -->
+    <string name="invalid_id">ID d\'histoire invalide</string>
+    <string name="title_detail">Détail de l\'histoire</string>
+    <string name="description_story">Description de l\'histoire</string>
+
+    <!-- AddStoryActivity -->
+    <string name="empty_image_warning">Veuillez d\'abord télécharger une image.</string>
+    <string name="no_media">Aucun média sélectionné</string>
+    <string name="hint">Écrivez votre histoire ici…</string>
+    <string name="camera">Caméra</string>
+    <string name="gallery">Galerie</string>
+    <string name="upload">Téléverser</string>
+    <string name="title_add_story">Créer une histoire</string>
+    <string name="title_permission_camera">Autorisation Caméra Requise</string>
+    <string name="message_permission_camera">Cette application a besoin d\'un accès à la caméra pour prendre des photos.</string>
+    <string name="message_permission_camera_settings">Veuillez activer l\'autorisation de la caméra dans les paramètres de l\'application.</string>
+    <string name="open_settings">Ouvrir les paramètres</string>
+    <string name="allow">Autoriser</string>
+    <string name="cancel">Annuler</string>
+    <string name="success_add_story">Histoire créée avec succès!</string>
+
+
+    <!-- SettingsActivity -->
+    <string name="dark_mode">Mode Sombre</string>
+    <string name="logout">Se Déconnecter</string>
+    <string name="account">Compte</string>
+    <string name="view">Affichage</string>
+    <string name="change_language">Changer de langue</string>
+    <string name="current_language">%1$s</string>
+    <string name="image_change_language">Image de changement de langue</string>
+    <string name="title_settings">Paramètres</string>
+    <string name="choose_language">Choisir la langue</string>
+</resources>
