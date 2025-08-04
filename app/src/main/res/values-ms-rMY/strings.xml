@@ -67,4 +67,17 @@
     <string name="image_change_language">Imej tukar bahasa</string>
     <string name="title_settings">Tetapan</string>
     <string name="choose_language">Pilih Bahasa</string>
+
+    <!-- MapsActivity -->
+    <string name="title_maps">Peta</string>
+    <string name="change_map_type">Tukar Jenis Peta</string>
+    <string name="map_type">Jenis peta</string>
+    <string name="satellite_map_type">Satelit</string>
+    <string name="terrain_map_type">Kawasan berbukit</string>
+    <string name="default_map_type">Asal</string>
+    <string name="satellite_image_description">Imej peta Satelit</string>
+    <string name="terrain_image_description">Imej peta Kawasan berbukit</string>
+    <string name="default_image_description">Imej peta Asal</string>
+
+
 </resources>

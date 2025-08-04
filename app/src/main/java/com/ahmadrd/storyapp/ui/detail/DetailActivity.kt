@@ -22,10 +22,6 @@ class DetailActivity : AppCompatActivity() {
         ViewModelFactory.getInstance(this)
     }
 
-    companion object {
-        const val EXTRA_ID = "extra_id"
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -96,5 +92,9 @@ class DetailActivity : AppCompatActivity() {
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    companion object {
+        const val EXTRA_ID = "extra_id"
     }
 }

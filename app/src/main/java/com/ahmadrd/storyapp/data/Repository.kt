@@ -85,6 +85,7 @@ class Repository private constructor(
             }
         } catch (e: Exception) {
             emit(ResultState.Error(ErrorType.ResourceError(R.string.login_failed)))
+            emit(ResultState.Error(ErrorType.ApiError(e.message!!)))
         }
     }
 
@@ -130,8 +131,12 @@ class Repository private constructor(
         try {
             val successResponse = apiService.uploadImage(multipartBody, requestBody)
             when {
-                successResponse.error -> emit(ResultState.Error(
-                    ErrorType.ApiError(successResponse.message)))
+                successResponse.error -> emit(
+                    ResultState.Error(
+                        ErrorType.ApiError(successResponse.message)
+                    )
+                )
+
                 else -> emit(ResultState.Success(successResponse))
             }
             emit(ResultState.Success(successResponse))
@@ -141,6 +146,21 @@ class Repository private constructor(
             emit(ResultState.Error(ErrorType.ApiError(errorResponse.message)))
         }
 
+    }
+
+    fun getStoriesWithLocation(): LiveData<ResultState<List<ListStoryItem>>> = liveData {
+        emit(ResultState.Loading)
+        try {
+            val response = apiService.getStoriesWithLocation()
+            if (!response.error) {
+                emit(ResultState.Success(response.listStory))
+            } else {
+                emit(ResultState.Error(ErrorType.ApiError(response.message)))
+            }
+        } catch (e: Exception) {
+            Log.e("MapsViewModel", "getLocation: ${e.message.toString()}")
+            emit(ResultState.Error(ErrorType.ApiError(e.message.toString())))
+        }
     }
 
     companion object {

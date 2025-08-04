@@ -18,6 +18,7 @@ import com.ahmadrd.storyapp.data.local.pref.UserPreference
 import com.ahmadrd.storyapp.data.local.pref.dataStore
 import com.ahmadrd.storyapp.databinding.ActivityStoryBinding
 import com.ahmadrd.storyapp.di.ViewModelFactory
+import com.ahmadrd.storyapp.ui.maps.MapsActivity
 import com.ahmadrd.storyapp.ui.adapter.StoryAdapter
 import com.ahmadrd.storyapp.ui.add.AddStoryActivity
 import com.ahmadrd.storyapp.ui.auth.login.LoginActivity
@@ -147,6 +148,10 @@ class StoryActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.navigation_settings -> {
                     startActivity(Intent(this, SettingsActivity::class.java))
+                }
+
+                R.id.navigation_maps -> {
+                    startActivity(Intent(this, MapsActivity::class.java))
                 }
             }
             true

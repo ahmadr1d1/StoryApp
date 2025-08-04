@@ -68,4 +68,16 @@
     <string name="image_change_language">Image de changement de langue</string>
     <string name="title_settings">Paramètres</string>
     <string name="choose_language">Choisir la langue</string>
+
+    <!-- MapsActivity -->
+    <string name="title_maps">Cartes</string>
+    <string name="change_map_type">Changer le type de carte</string>
+    <string name="map_type">Type de carte</string>
+    <string name="satellite_map_type">Satellite</string>
+    <string name="terrain_map_type">Relief</string>
+    <string name="default_map_type">Par défaut</string>
+    <string name="satellite_image_description">Image de la carte satellite</string>
+    <string name="terrain_image_description">Image de la carte en relief</string>
+    <string name="default_image_description">Image de la carte par défaut</string>
+
 </resources>

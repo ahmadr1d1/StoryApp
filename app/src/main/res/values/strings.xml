@@ -35,6 +35,7 @@
     <!-- StoryActivity -->
     <string name="title_home">Daftar Cerita</string>
 
+
     <!-- DetailActivity -->
     <string name="invalid_id">ID Story tidak valid</string>
     <string name="title_detail">Detail Story</string>
@@ -66,4 +67,16 @@
     <string name="image_change_language">Gambar ubah bahasa</string>
     <string name="title_settings">Pengaturan</string>
     <string name="choose_language">Pilih Bahasa</string>
+
+    <!-- MapsActivity -->
+    <string name="title_maps">Peta</string>
+    <string name="change_map_type">Ubah Tipe Peta</string>
+    <string name="map_type">Jenis peta</string>
+    <string name="satellite_map_type">Satelit</string>
+    <string name="terrain_map_type">Medan</string>
+    <string name="default_map_type">Default</string>
+    <string name="satellite_image_description">Gambar peta Satelit</string>
+    <string name="terrain_image_description">Gambar peta Medan</string>
+    <string name="default_image_description">Gambar peta Default</string>
+
 </resources>

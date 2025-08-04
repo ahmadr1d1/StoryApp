@@ -1,5 +1,6 @@
 package com.ahmadrd.storyapp.data.remote.retrofit
 
+import android.util.Log
 import com.ahmadrd.storyapp.BuildConfig
 import com.ahmadrd.storyapp.data.local.pref.UserPreference
 import kotlinx.coroutines.flow.first
@@ -22,6 +23,7 @@ object ApiConfig {
 
         val authInterceptor = Interceptor { chain ->
             val token = runBlocking { pref.getSession().first().token }
+            Log.d("ApiConfig", "Token: $token")
             val req = chain.request()
             val requestHeaders = req.newBuilder()
                 .addHeader("Authorization", "Bearer $token")
