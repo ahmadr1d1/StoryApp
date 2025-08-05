@@ -10,6 +10,7 @@ import com.ahmadrd.storyapp.databinding.ActivityMapsBinding
 import com.ahmadrd.storyapp.di.ViewModelFactory
 import com.ahmadrd.storyapp.utils.ErrorType
 import com.ahmadrd.storyapp.utils.ResultState
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
@@ -79,6 +80,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, MapTypeBottomSheet
                                     .position(storyLatLng)
                                     .title(story.name)
                                     .snippet(story.description)
+                            )
+                            mMap.animateCamera(
+                                CameraUpdateFactory.newLatLngZoom(
+                                    storyLatLng,
+                                    5f
+                                )
                             )
                         }
                     }
