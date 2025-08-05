@@ -5,4 +5,6 @@
     <color name="primary">#4D7CFF</color>
     <color name="bgButton">#0027FF</color>
     <color name="register_login">#0093FF</color>
+
+    <color name="map_type">#FF000000</color>
 </resources>

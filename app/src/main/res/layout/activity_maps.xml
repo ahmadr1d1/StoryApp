@@ -25,8 +25,7 @@
         app:srcCompat="@drawable/baseline_layers_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:backgroundTint="@color/white"
-        android:tint="?attr/colorOnSurfaceVariant" />
+        app:backgroundTint="@color/map_type" />
 
     <ProgressBar
         android:id="@+id/progress_bar_maps"

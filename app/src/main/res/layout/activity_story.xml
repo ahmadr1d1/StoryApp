@@ -14,7 +14,6 @@
             android:id="@+id/toolbarHome"
             android:layout_width="match_parent"
             android:layout_height="65dp"
-            android:background="?android:attr/windowBackground"
             android:minHeight="65dp"
             android:theme="@style/Base.Theme.StoryApp"
             app:menu="@menu/menu_home"

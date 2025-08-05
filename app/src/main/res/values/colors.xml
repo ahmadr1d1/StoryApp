@@ -6,4 +6,6 @@
     <color name="text">#FF000000</color>
     <color name="card">#FFFFFFFF</color>
     <color name="register_login">#004FA9</color>
+
+    <color name="map_type">#FFFFFFFF</color>
 </resources>
