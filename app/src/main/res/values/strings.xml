@@ -56,6 +56,11 @@
     <string name="allow">Izinkan</string>
     <string name="cancel">Batal</string>
     <string name="success_add_story">Berhasil Membuat Story baru!</string>
+    <string name="share_your_location">Kirim Lokasimu</string>
+    <string name="upload_failed">Unggahan gagal</string>
+    <string name="location_found">Lokasi berhasil ditemukan!</string>
+    <string name="location_not_found">Lokasi tidak ditemukan. Pastikan GPS Anda aktif.</string>
+    <string name="location_permission_denied">Izin lokasi ditolak, fitur lokasi tidak dapat digunakan.</string>
 
     <!-- SettingsActivity -->
     <string name="dark_mode">Mode Gelap</string>

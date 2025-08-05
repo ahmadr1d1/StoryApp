@@ -102,7 +102,7 @@ class SettingsActivity : AppCompatActivity() {
 
     @SuppressLint("AppBundleLocaleChanges")
     private fun updateResources(languageCode: String) {
-        val locale = Locale(languageCode)
+        @Suppress("DEPRECATION") val locale = Locale(languageCode)
         Locale.setDefault(locale)
         val config = resources.configuration
         config.setLocale(locale)

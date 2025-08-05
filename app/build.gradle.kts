@@ -89,4 +89,7 @@ dependencies {
     implementation(libs.androidx.room.paging)
     implementation(libs.androidx.room.ktx)
     ksp(libs.room.compiler)
+
+    implementation(libs.play.services.maps.v1820)
+    implementation(libs.play.services.location)
 }

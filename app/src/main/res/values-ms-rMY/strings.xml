@@ -57,6 +57,11 @@
     <string name="allow">Benarkan</string>
     <string name="cancel">Batal</string>
     <string name="success_add_story">Berjaya mencipta cerita baharu!</string>
+    <string name="share_your_location">Kongsi Lokasi Anda</string>
+    <string name="upload_failed">Muat naik gagal</string>
+    <string name="location_found">Lokasi berjaya ditemui!</string>
+    <string name="location_not_found">Lokasi tidak ditemui. Pastikan GPS anda diaktifkan.</string>
+    <string name="location_permission_denied">Kebenaran lokasi ditolak, ciri lokasi tidak dapat digunakan.</string>
 
     <!-- SettingsActivity -->
     <string name="dark_mode">Mod Gelap</string>

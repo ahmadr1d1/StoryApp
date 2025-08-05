@@ -56,6 +56,11 @@
     <string name="allow">Allow</string>
     <string name="cancel">Cancel</string>
     <string name="success_add_story">Successfully created a new story!</string>
+    <string name="share_your_location">Share Your Location</string>
+    <string name="upload_failed">Upload failed</string>
+    <string name="location_found">Location found successfully!</string>
+    <string name="location_not_found">Location not found. Please make sure your GPS is turned on.</string>
+    <string name="location_permission_denied">Location permission denied, location features cannot be used.</string>
 
     <!-- SettingsActivity -->
     <string name="dark_mode">Dark Mode</string>

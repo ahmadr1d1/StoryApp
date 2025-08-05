@@ -57,7 +57,11 @@
     <string name="allow">Autoriser</string>
     <string name="cancel">Annuler</string>
     <string name="success_add_story">Histoire créée avec succès!</string>
-
+    <string name="share_your_location">Partagez votre position</string>
+    <string name="upload_failed">Échec du téléversement</string>
+    <string name="location_found">Emplacement trouvé avec succès !</string>
+    <string name="location_not_found">Emplacement introuvable. Veuillez vous assurer que votre GPS est activé.</string>
+    <string name="location_permission_denied">Autorisation de localisation refusée, les fonctionnalités de localisation ne peuvent pas être utilisées.</string>
 
     <!-- SettingsActivity -->
     <string name="dark_mode">Mode Sombre</string>

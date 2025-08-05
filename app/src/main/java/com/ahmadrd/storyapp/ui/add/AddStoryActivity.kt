@@ -3,6 +3,7 @@ package com.ahmadrd.storyapp.ui.add
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
@@ -27,6 +28,8 @@ import com.ahmadrd.storyapp.utils.ResultState
 import com.ahmadrd.storyapp.utils.UploadStory.getImageUri
 import com.ahmadrd.storyapp.utils.UploadStory.reduceFileImage
 import com.ahmadrd.storyapp.utils.UploadStory.uriToFile
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 
 class AddStoryActivity : AppCompatActivity() {
 
@@ -35,6 +38,27 @@ class AddStoryActivity : AppCompatActivity() {
     private val viewModel by viewModels<AddStoryViewModel> {
         ViewModelFactory.getInstance(this)
     }
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private var currentLatitude: Double? = null
+    private var currentLongitude: Double? = null
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()
+        ) { permissions ->
+            when {
+                permissions[Manifest.permission.ACCESS_FINE_LOCATION] ?: false -> {
+                    getMyLastLocation()
+                }
+                permissions[Manifest.permission.ACCESS_COARSE_LOCATION] ?: false -> {
+                    getMyLastLocation()
+                }
+                else -> {
+                    // Tidak ada izin yang diberikan. Matikan kembali switch dan beri tahu user.
+                    binding.switchLocation.isChecked = false
+                    showToast(getString(R.string.location_permission_denied))
+                }
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +71,8 @@ class AddStoryActivity : AppCompatActivity() {
             insets
         }
 
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
         observeViewModel()
         with(binding) {
             toolbarHome.setNavigationOnClickListener {
@@ -55,6 +81,15 @@ class AddStoryActivity : AppCompatActivity() {
             buttonCamera.setOnClickListener { checkCameraPermissionAndOpenCamera() }
             buttonGallery.setOnClickListener { startGallery() }
             buttonUpload.setOnClickListener { uploadImage() }
+            switchLocation.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    getMyLastLocation()
+                } else {
+                    // Saat switch dinonaktifkan, hapus data lokasi
+                    currentLatitude = null
+                    currentLongitude = null
+                }
+            }
         }
     }
 
@@ -147,7 +182,7 @@ class AddStoryActivity : AppCompatActivity() {
         currentImageUri?.let { uri ->
             val imageFile = uriToFile(uri, this).reduceFileImage()
             val description = binding.edAddDesc.text.toString()
-            viewModel.uploadImage(imageFile, description)
+            viewModel.uploadImage(imageFile, description, currentLatitude, currentLongitude)
         } ?: showToast(getString(R.string.empty_image_warning))
     }
 
@@ -183,6 +218,38 @@ class AddStoryActivity : AppCompatActivity() {
                     }
                 }
             }
+        }
+    }
+
+    private fun checkPermission(permission: String): Boolean {
+        return ContextCompat.checkSelfPermission(
+            this,
+            permission
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun getMyLastLocation() {
+        if (checkPermission(Manifest.permission.ACCESS_FINE_LOCATION) &&
+            checkPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
+        ) {
+            fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
+                if (location != null) {
+                    this.currentLatitude = location.latitude
+                    this.currentLongitude = location.longitude
+                    showToast(getString(R.string.location_found))
+                } else {
+                    showToast(getString(R.string.location_not_found))
+                    // Matikan switch jika lokasi null
+                    binding.switchLocation.isChecked = false
+                }
+            }
+        } else {
+            requestPermissionLauncher.launch(
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                )
+            )
         }
     }
 

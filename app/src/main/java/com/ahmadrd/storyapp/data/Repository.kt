@@ -123,34 +123,39 @@ class Repository private constructor(
             emit(ResultState.Error(ErrorType.ApiError(e.message.toString())))
         }
     }
-
-    fun uploadImage(imageFile: File, description: String) = liveData {
+    fun uploadImage(imageFile: File, description: String, lat: Double?, lon: Double?) = liveData {
         emit(ResultState.Loading)
-        val requestBody = description.toRequestBody("text/plain".toMediaType())
+        val descriptionRequestBody = description.toRequestBody("text/plain".toMediaType())
         val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
         val multipartBody = MultipartBody.Part.createFormData(
             "photo",
             imageFile.name,
             requestImageFile
         )
-        try {
-            val successResponse = apiService.uploadImage(multipartBody, requestBody)
-            when {
-                successResponse.error -> emit(
-                    ResultState.Error(
-                        ErrorType.ApiError(successResponse.message)
-                    )
-                )
+        val latRequestBody = lat?.toString()?.toRequestBody("text/plain".toMediaType())
+        val lonRequestBody = lon?.toString()?.toRequestBody("text/plain".toMediaType())
 
-                else -> emit(ResultState.Success(successResponse))
+        try {
+            val successResponse = apiService.uploadImage(
+                multipartBody,
+                descriptionRequestBody,
+                latRequestBody,
+                lonRequestBody
+            )
+
+            if (successResponse.error) {
+                emit(ResultState.Error(ErrorType.ApiError(successResponse.message)))
+            } else {
+                emit(ResultState.Success(successResponse))
             }
-            emit(ResultState.Success(successResponse))
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
             val errorResponse = Gson().fromJson(errorBody, UploadStoryResponse::class.java)
             emit(ResultState.Error(ErrorType.ApiError(errorResponse.message)))
+        } catch (e: Exception) {
+            emit(ResultState.Error(ErrorType.ApiError(e.message!!)))
+            emit(ResultState.Error(ErrorType.ResourceError(R.string.upload_failed)))
         }
-
     }
 
     fun getStoriesWithLocation(): LiveData<ResultState<List<ListStoryItem>>> = liveData {
@@ -164,7 +169,6 @@ class Repository private constructor(
             }
         } catch (e: Exception) {
             Log.e("MapsViewModel", "getLocation: ${e.message.toString()}")
-            emit(ResultState.Error(ErrorType.ApiError(e.message.toString())))
         }
     }
 
