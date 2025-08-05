@@ -1,7 +1,18 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin)
+}
+
+fun getApi(propertyKey: String): String {
+    val properties = Properties()
+    val localProperties = rootProject.file("local.properties")
+    if (localProperties.exists()) {
+        properties.load(localProperties.inputStream())
+    }
+    return properties.getProperty(propertyKey, "")
 }
 
 android {
@@ -17,7 +28,10 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "BASE_URL", "\"https://story-api.dicoding.dev/v1/\"")
+        buildConfigField("String", "BASE_URL", "\"${getApi("API_BASE_URL_DICODING_STORY")}\"")
+//        buildConfigField("String", "MAPS_API_KEY", "\"${getApi("MAPS_API_KEY")}\"")
+        manifestPlaceholders["MAPS_API_KEY"] = getApi("MAPS_API_KEY")
+//        manifestPlaceholders["MAPS_API_KEY"] = getApiKey("\"AIzaSyBU06bXr78jFJMpgtvG0BCNpDrD1Wm6y-o\"")
     }
 
     buildTypes {
@@ -70,4 +84,5 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.paging.common.android)
+    implementation(libs.androidx.paging.runtime.ktx)
 }
