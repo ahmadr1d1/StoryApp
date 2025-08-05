@@ -35,6 +35,7 @@
 
     <!-- StoryActivity -->
     <string name="title_home">Liste des Histoires</string>
+    <string name="retry">Rafraîchir</string>
 
     <!-- DetailActivity -->
     <string name="invalid_id">ID d\'histoire invalide</string>

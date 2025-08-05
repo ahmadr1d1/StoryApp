@@ -35,6 +35,7 @@
 
     <!-- StoryActivity -->
     <string name="title_home">Senarai Cerita</string>
+    <string name="retry">Segar Semula</string>
 
     <!-- DetailActivity -->
     <string name="invalid_id">ID cerita tidak sah</string>

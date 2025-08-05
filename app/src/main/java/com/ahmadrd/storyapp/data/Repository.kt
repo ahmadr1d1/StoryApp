@@ -3,7 +3,13 @@ package com.ahmadrd.storyapp.data
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.liveData
 import com.ahmadrd.storyapp.R
+import com.ahmadrd.storyapp.data.local.database.StoryDatabase
 import com.ahmadrd.storyapp.data.local.pref.UserPreference
 import com.ahmadrd.storyapp.data.remote.response.auth.*
 import com.ahmadrd.storyapp.data.remote.response.story.*
@@ -20,6 +26,7 @@ import retrofit2.HttpException
 import java.io.File
 
 class Repository private constructor(
+    private val storyDatabase: StoryDatabase,
     private val userPreference: UserPreference,
     private val apiService: ApiService
 ) {
@@ -89,19 +96,17 @@ class Repository private constructor(
         }
     }
 
-    fun getStories(): LiveData<ResultState<List<ListStoryItem>>> = liveData {
-        emit(ResultState.Loading)
-        try {
-            val response = apiService.getStories()
-            if (!response.error) {
-                emit(ResultState.Success(response.listStory))
-            } else {
-                emit(ResultState.Error(ErrorType.ApiError(response.message)))
+    fun getStories(): LiveData<PagingData<ListStoryItem>> {
+        @OptIn(ExperimentalPagingApi::class)
+        return Pager(
+            config = PagingConfig(
+                pageSize = 5
+            ),
+            remoteMediator = StoryRemoteMediator(storyDatabase, apiService),
+            pagingSourceFactory = {
+                storyDatabase.storyDao().getAllStory()
             }
-        } catch (e: Exception) {
-            Log.e("StoryViewModel", "getStories: ${e.message.toString()}")
-            emit(ResultState.Error(ErrorType.ApiError(e.message.toString())))
-        }
+        ).liveData
     }
 
     fun getStoryDetail(id: String): LiveData<ResultState<Story?>> = liveData {
@@ -167,11 +172,12 @@ class Repository private constructor(
         @Volatile
         private var instance: Repository? = null
         fun getInstance(
+            storyDatabase: StoryDatabase,
             userPreference: UserPreference,
             apiService: ApiService
         ): Repository =
             instance ?: synchronized(this) {
-                instance ?: Repository(userPreference, apiService)
+                instance ?: Repository(storyDatabase, userPreference, apiService)
             }.also { instance = it }
     }
 }

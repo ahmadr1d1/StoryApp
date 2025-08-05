@@ -3,8 +3,6 @@ package com.ahmadrd.storyapp.ui.main
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -18,13 +16,12 @@ import com.ahmadrd.storyapp.data.local.pref.UserPreference
 import com.ahmadrd.storyapp.data.local.pref.dataStore
 import com.ahmadrd.storyapp.databinding.ActivityStoryBinding
 import com.ahmadrd.storyapp.di.ViewModelFactory
-import com.ahmadrd.storyapp.ui.maps.MapsActivity
+import com.ahmadrd.storyapp.ui.adapter.LoadingStateAdapter
 import com.ahmadrd.storyapp.ui.adapter.StoryAdapter
 import com.ahmadrd.storyapp.ui.add.AddStoryActivity
 import com.ahmadrd.storyapp.ui.auth.login.LoginActivity
+import com.ahmadrd.storyapp.ui.maps.MapsActivity
 import com.ahmadrd.storyapp.ui.settings.SettingsActivity
-import com.ahmadrd.storyapp.utils.ErrorType
-import com.ahmadrd.storyapp.utils.ResultState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.firstOrNull
@@ -61,7 +58,6 @@ class StoryActivity : AppCompatActivity() {
                 setupMenu()
                 setupRecyclerView()
                 setupAction()
-                observeViewModel()
             } else {
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
@@ -87,7 +83,7 @@ class StoryActivity : AppCompatActivity() {
 
     @SuppressLint("AppBundleLocaleChanges")
     private fun setAppLocale(language: String) {
-        val locale = Locale(language)
+        @Suppress("DEPRECATION") val locale = Locale(language)
         Locale.setDefault(locale)
         val config = resources.configuration
         config.setLocale(locale)
@@ -104,42 +100,16 @@ class StoryActivity : AppCompatActivity() {
     private fun setupRecyclerView() {
         adapter = StoryAdapter()
         binding.rvStory.apply {
-            adapter = this@StoryActivity.adapter
+            adapter = this@StoryActivity.adapter.withLoadStateFooter(
+                footer = LoadingStateAdapter {
+                    this@StoryActivity.adapter.retry()
+                }
+            )
             layoutManager = LinearLayoutManager(this@StoryActivity)
         }
-    }
 
-    private fun observeViewModel() {
-        viewModel.stories.observe(this) { result ->
-            when (result) {
-                is ResultState.Loading -> {
-                    showLoading(true)
-                }
-
-                is ResultState.Success -> {
-                    showLoading(false)
-                    adapter.submitList(result.data)
-                }
-
-                is ResultState.Error -> {
-                    showLoading(false)
-                    when (val errorType = result.error) {
-                        is ErrorType.ApiError -> {
-                            // Jika error dari API, tampilkan pesannya langsung
-                            Toast.makeText(
-                                this, errorType.message, Toast.LENGTH_LONG
-                            ).show()
-                        }
-
-                        is ErrorType.ResourceError -> {
-                            // Jika error dari resource, gunakan getString untuk menerjemahkannya
-                            Toast.makeText(
-                                this, getString(errorType.resId), Toast.LENGTH_LONG
-                            ).show()
-                        }
-                    }
-                }
-            }
+        viewModel.stories.observe(this) {
+            adapter.submitData(lifecycle, it)
         }
     }
 
@@ -156,9 +126,5 @@ class StoryActivity : AppCompatActivity() {
             }
             true
         }
-    }
-
-    private fun showLoading(isLoading: Boolean) {
-        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 }

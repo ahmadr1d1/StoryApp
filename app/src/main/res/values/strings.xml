@@ -34,7 +34,7 @@
 
     <!-- StoryActivity -->
     <string name="title_home">Daftar Cerita</string>
-
+    <string name="retry">Muat Ulang</string>
 
     <!-- DetailActivity -->
     <string name="invalid_id">ID Story tidak valid</string>

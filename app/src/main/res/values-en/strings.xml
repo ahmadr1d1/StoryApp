@@ -34,6 +34,7 @@
 
     <!-- StoryActivity -->
     <string name="title_home">Story List</string>
+    <string name="retry">Refresh</string>
 
     <!-- DetailActivity -->
     <string name="invalid_id">Invalid story ID</string>
