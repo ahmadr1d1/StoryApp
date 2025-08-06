@@ -22,16 +22,6 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         }
     }
 
-    fun getSession(): Flow<LoginResult> {
-        return dataStore.data.map { preferences ->
-            LoginResult(
-                userId = preferences[USER_ID] ?: "",
-                name = preferences[USER_NAME] ?: "",
-                token = preferences[TOKEN] ?: ""
-            )
-        }
-    }
-
     // Menyimpan session untuk status login
     fun isUserLoggedIn(): Flow<Boolean> {
         return dataStore.data.map { preferences ->

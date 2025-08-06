@@ -13,6 +13,7 @@ import com.ahmadrd.storyapp.data.local.database.StoryDatabase
 import com.ahmadrd.storyapp.data.local.pref.UserPreference
 import com.ahmadrd.storyapp.data.remote.response.auth.*
 import com.ahmadrd.storyapp.data.remote.response.story.*
+import com.ahmadrd.storyapp.data.remote.retrofit.ApiConfig
 import com.ahmadrd.storyapp.data.remote.retrofit.ApiService
 import com.ahmadrd.storyapp.utils.ErrorType
 import com.ahmadrd.storyapp.utils.ResultState
@@ -28,7 +29,7 @@ import java.io.File
 class Repository private constructor(
     private val storyDatabase: StoryDatabase,
     private val userPreference: UserPreference,
-    private val apiService: ApiService
+    private var apiService: ApiService
 ) {
 
     fun isUserLoggedIn(): Flow<Boolean> = userPreference.isUserLoggedIn()
@@ -77,7 +78,11 @@ class Repository private constructor(
             val response = apiService.login(email, password)
             if (!response.error) {
                 val loginResult = response.loginResult
-                userPreference.saveSession(loginResult) // Menyimpan data login ke sesi
+
+                userPreference.saveSession(loginResult)
+                val newToken = loginResult.token
+                apiService = ApiConfig.getApiService(newToken)
+
                 emit(ResultState.Success(loginResult))
             } else {
                 emit(ResultState.Error(ErrorType.ApiError(response.message)))
