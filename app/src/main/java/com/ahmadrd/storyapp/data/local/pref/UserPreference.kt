@@ -6,6 +6,7 @@ import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
 import com.ahmadrd.storyapp.data.remote.response.auth.LoginResult
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import java.util.Locale
 
@@ -29,6 +30,11 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         }
     }
 
+    suspend fun getToken(): String {
+        return dataStore.data.map { preferences ->
+            preferences[TOKEN] ?: ""
+        }.first()
+    }
 
     suspend fun logout() {
         dataStore.edit { preferences ->

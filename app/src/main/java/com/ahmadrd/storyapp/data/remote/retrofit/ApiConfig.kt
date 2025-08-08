@@ -1,13 +1,14 @@
 package com.ahmadrd.storyapp.data.remote.retrofit
 
 import com.ahmadrd.storyapp.BuildConfig
+import com.ahmadrd.storyapp.data.local.pref.UserPreference
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiConfig {
-    fun getApiService(token: String): ApiService {
+    fun getApiService(pref: UserPreference): ApiService {
         val loggingInterceptor =
             HttpLoggingInterceptor().setLevel(
                 if (BuildConfig.DEBUG)
@@ -17,7 +18,7 @@ object ApiConfig {
             )
 
         val client = OkHttpClient.Builder()
-            .addInterceptor(AuthInterceptor(token))
+            .addInterceptor(AuthInterceptor(pref))
             .addInterceptor(loggingInterceptor)
             .build()
 
