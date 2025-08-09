@@ -2,6 +2,7 @@ package com.ahmadrd.storyapp.data
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.liveData
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
@@ -17,7 +18,6 @@ import com.ahmadrd.storyapp.data.remote.retrofit.ApiService
 import com.ahmadrd.storyapp.utils.ErrorType
 import com.ahmadrd.storyapp.utils.ResultState
 import com.google.gson.Gson
-import kotlinx.coroutines.flow.Flow
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -31,7 +31,7 @@ class Repository private constructor(
     private val apiService: ApiService
 ) {
 
-    fun isUserLoggedIn(): Flow<Boolean> = userPreference.isUserLoggedIn()
+    fun isUserLoggedIn(): LiveData<Boolean> = userPreference.isUserLoggedIn().asLiveData()
 
     suspend fun logout() = userPreference.logout()
 
