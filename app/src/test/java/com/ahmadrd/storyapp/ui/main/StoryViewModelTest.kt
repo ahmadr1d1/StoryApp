@@ -27,6 +27,7 @@ class StoryViewModelTest {
     @get:Rule
     val mainDispatcherRules = MainDispatcherRule()
 
+    private lateinit var storyViewModel: StoryViewModel
     @Mock
     private lateinit var storyRepository: Repository
 
@@ -38,7 +39,7 @@ class StoryViewModelTest {
         expectedStories.value = data
         Mockito.`when`(storyRepository.getStories()).thenReturn(expectedStories)
 
-        val storyViewModel = StoryViewModel(storyRepository)
+        storyViewModel = StoryViewModel(storyRepository)
         val actualStories: PagingData<ListStoryItem> = storyViewModel.stories.getOrAwaitValue()
 
         val differ = AsyncPagingDataDiffer(
@@ -59,7 +60,7 @@ class StoryViewModelTest {
         val expectedStories = MutableLiveData<PagingData<ListStoryItem>>()
         expectedStories.value = data
         Mockito.`when`(storyRepository.getStories()).thenReturn(expectedStories)
-        val storyViewModel = StoryViewModel(storyRepository)
+        storyViewModel = StoryViewModel(storyRepository)
         val actualStories: PagingData<ListStoryItem> = storyViewModel.stories.getOrAwaitValue()
         val differ = AsyncPagingDataDiffer(
             diffCallback = StoryAdapter.DIFF_CALLBACK,
@@ -78,7 +79,7 @@ class StoryViewModelTest {
 
         Mockito.`when`(storyRepository.isUserLoggedIn()).thenReturn(liveData)
 
-        val storyViewModel = StoryViewModel(storyRepository)
+        storyViewModel = StoryViewModel(storyRepository)
 
         val actualLoginStatus = storyViewModel.isLogin.getOrAwaitValue()
 
@@ -94,7 +95,7 @@ class StoryViewModelTest {
 
         Mockito.`when`(storyRepository.isUserLoggedIn()).thenReturn(liveData)
 
-        val storyViewModel = StoryViewModel(storyRepository)
+        storyViewModel = StoryViewModel(storyRepository)
 
         val actualLoginStatus = storyViewModel.isLogin.getOrAwaitValue()
 
