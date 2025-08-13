@@ -2,7 +2,6 @@ package com.ahmadrd.storyapp.ui.auth.login
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -52,7 +51,7 @@ class LoginActivity : AppCompatActivity() {
             val passwordValue = binding.passwordEditText.text.toString().trim()
 
 
-            val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val imm = this.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(it.windowToken, 0)
 
             if (isInputValid(emailValue, passwordValue)) {

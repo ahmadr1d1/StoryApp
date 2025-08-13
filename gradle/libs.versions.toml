@@ -32,6 +32,9 @@ coreTesting = "2.2.0"
 kotlinxCoroutinesTest = "1.10.2"
 mockitoCore = "5.18.0"
 mockitoInline = "5.2.0"
+espressoIntents = "3.7.0"
+espressoIdlingResource = "3.7.0"
+espressoContrib = "3.0.2"
 
 [libraries]
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activity" }
@@ -67,6 +70,9 @@ androidx-core-testing = { module = "androidx.arch.core:core-testing", version.re
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
 mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "mockitoInline" }
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
+espresso-intents = { module = "androidx.test.espresso:espresso-intents", version.ref = "espressoIntents" }
+androidx-espresso-idling-resource = { group = "androidx.test.espresso", name = "espresso-idling-resource", version.ref = "espressoIdlingResource" }
+espresso-contrib = { module = "com.android.support.test.espresso:espresso-contrib", version.ref = "espressoContrib" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -16,6 +16,7 @@ import com.ahmadrd.storyapp.data.remote.response.auth.*
 import com.ahmadrd.storyapp.data.remote.response.story.*
 import com.ahmadrd.storyapp.data.remote.retrofit.ApiService
 import com.ahmadrd.storyapp.utils.ErrorType
+import com.ahmadrd.storyapp.utils.EspressoIdlingResource.wrapEspressoIdlingResource
 import com.ahmadrd.storyapp.utils.ResultState
 import com.google.gson.Gson
 import okhttp3.MediaType.Companion.toMediaType
@@ -72,29 +73,31 @@ class Repository private constructor(
         email: String,
         password: String
     ): LiveData<ResultState<LoginResult>> = liveData {
-        emit(ResultState.Loading)
-        try {
-            val response = apiService.login(email, password)
-            if (!response.error) {
-                val loginResult = response.loginResult
+        wrapEspressoIdlingResource {
+            emit(ResultState.Loading)
+            try {
+                val response = apiService.login(email, password)
+                if (!response.error) {
+                    val loginResult = response.loginResult
 
-                userPreference.saveSession(loginResult)
+                    userPreference.saveSession(loginResult)
 
-                emit(ResultState.Success(loginResult))
-            } else {
-                emit(ResultState.Error(ErrorType.ApiError(response.message)))
+                    emit(ResultState.Success(loginResult))
+                } else {
+                    emit(ResultState.Error(ErrorType.ApiError(response.message)))
+                }
+            } catch (e: HttpException) {
+                if (e.code() == 401) {
+                    emit(ResultState.Error(ErrorType.ResourceError(R.string.error_wrong_credentials)))
+                } else {
+                    val errorBody = e.response()?.errorBody()?.string()
+                    val errorResponse = Gson().fromJson(errorBody, LoginResponse::class.java)
+                    emit(ResultState.Error(ErrorType.ApiError(errorResponse.message)))
+                }
+            } catch (e: Exception) {
+                emit(ResultState.Error(ErrorType.ResourceError(R.string.login_failed)))
+                emit(ResultState.Error(ErrorType.ApiError(e.message!!)))
             }
-        } catch (e: HttpException) {
-            if (e.code() == 401) {
-                emit(ResultState.Error(ErrorType.ResourceError(R.string.error_wrong_credentials)))
-            } else {
-                val errorBody = e.response()?.errorBody()?.string()
-                val errorResponse = Gson().fromJson(errorBody, LoginResponse::class.java)
-                emit(ResultState.Error(ErrorType.ApiError(errorResponse.message)))
-            }
-        } catch (e: Exception) {
-            emit(ResultState.Error(ErrorType.ResourceError(R.string.login_failed)))
-            emit(ResultState.Error(ErrorType.ApiError(e.message!!)))
         }
     }
 

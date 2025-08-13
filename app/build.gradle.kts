@@ -48,7 +48,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = "17"
-        freeCompilerArgs = listOf("-Xopt-in=kotlin.RequiresOptIn")
+        freeCompilerArgs = listOf("-opt-in=kotlin.RequiresOptIn")
     }
     buildFeatures {
         viewBinding = true
@@ -63,11 +63,12 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.espresso.idling.resource)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    // Ad
+    // Add
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.livedata.ktx)
@@ -100,4 +101,7 @@ dependencies {
     testImplementation(libs.kotlinx.coroutines.test) //TestDispatcher
     testImplementation(libs.mockito.core)
     testImplementation(libs.mockito.inline)
+
+    androidTestImplementation(libs.espresso.intents) //IntentsTestRule
+    androidTestImplementation(libs.espresso.contrib) //RecyclerViewActions
 }
