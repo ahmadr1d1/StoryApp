@@ -80,6 +80,6 @@ Aplikasi ini memungkinkan pengguna untuk berbagi cerita melalui foto dan teks, s
 3. Pastikan anda memiliki API Key dari Dicoding Story dan MAPS Api key <i>"Alza...."</i> lalu letakkan pada local.properties seperti ini :
    ```bash
    API_BASE_URL_DICODING_STORY=https://*****
-   MAPS_API_KEY=AIza*****.git
+   MAPS_API_KEY=AIza*****
    ```
 4. Jalankan di emulator atau physical device anda
