@@ -70,8 +70,16 @@ Aplikasi ini memungkinkan pengguna untuk berbagi cerita melalui foto dan teks, s
 
 ---
 
-##  Cara Menjalankan Aplikasi
+## ▶️ Cara Menjalankan Aplikasi
 
 1. **Clone repository ini**  
    ```bash
    git clone https://github.com/ahmadr1d1/StoryApp.git
+   ```
+2. Buka di Android Studio
+3. Pastikan anda memiliki API Key dari Dicoding Story dan MAPS Api key <i>"Alza...."</i> lalu letakkan pada local.properties seperti ini :
+   ```bash
+   API_BASE_URL_DICODING_STORY=https://*****
+   MAPS_API_KEY=AIza*****.git
+   ```
+4. Jalankan di emulator atau physical device anda
